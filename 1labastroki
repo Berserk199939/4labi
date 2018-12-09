@@ -1,0 +1,82 @@
+#include <stdio.h>
+// определение символических констант
+#define YES 1
+#define NO 0
+#define MAXLINE 1000
+void process_line( char buffer[] );
+void main( void )
+{
+char line[MAXLINE];
+gets( line );
+process_line( line );
+puts( line );
+}
+void process_line( char buffer[] )
+{
+char c; // текущий символ
+int flag; // признак слова
+int flagglas = NO;
+int i; // позиция текущего символа
+int start; // позиция начала слова
+int stop; // позиция конца слова
+int j, k;
+// начальные присваивания (инициализация переменных)
+flag = NO;
+found = NO;
+start = 0;
+stop = 0;
+i = 0;
+// цикл чтения символов из строки
+do
+{
+c = buffer[i]; // взять текущий символ из буфера
+if( c==' ' || c=='.' || c==',' || c=='\n' || c=='\0')
+{
+if (flag == YES)
+{
+    stop=i-1;
+
+    if( flagglas == YES )
+{
+    flagglas = NO;
+    k=start;
+    j=stop+1;
+while(buffer[j] != '\0')
+{
+
+    buffer[k] = buffer[j];
+    buffer[j] = ' ';
+    k++;
+    j++;
+}
+buffer[k] = '\0';
+i = start;
+
+}
+}
+
+flag = NO;
+}
+//---------------------------------------------------
+else
+{
+// найдена буква
+if( flag == NO )
+{
+    start = i;
+    flag = YES;
+    flagglas = NO;
+    if (c == 'a' || c == 'e'|| c == 'y' || c == 'u' || c == 'i' || c == 'o')
+{
+    flagglas = YES;
+}
+
+}
+
+else
+flag = YES;
+}
+i++;
+}
+while( c != '\0' );
+}
